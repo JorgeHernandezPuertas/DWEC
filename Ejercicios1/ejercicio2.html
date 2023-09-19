@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <img id="imagen" onclick="cambiarImagen()" src="imagenes/perro1.jpeg" width="200" height="200"/>
+    <p>Haz click sobre la imagen para cambiarla</p>
+    <script>
+        function cambiarImagen(){
+            var foto = document.getElementById("imagen");
+            switch (foto.getAttribute("src")){
+                case "imagenes/perro1.jpeg": foto.src = "imagenes/perro2.jpeg";
+                break;
+                case "imagenes/perro2.jpeg": foto.src = "imagenes/perro3.jpeg";
+                break;
+                case "imagenes/perro3.jpeg": foto.src = "imagenes/perro4.jpeg";
+                break;
+                default: foto.src = "imagenes/perro1.jpeg";
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
