@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear funcion con parametros</title>
+</head>
+<body>
+    <script>
+        function calcula(a, b, c){
+            if (b == undefined && c == undefined){
+                return a*a;
+            } else if (c == undefined){
+                return a * b;
+            } else {
+                return a + b + c;
+            }
+        }
+        // Imprimo
+        console.log("Con un parametro (2): " + calcula(2));
+            console.log("Con dos parametro (2, 3): " + calcula(2, 3));
+            console.log("Con tres parametro (2, 3, 5): " + calcula(2, 3, 5));
+    </script>
+</body>
+</html>
