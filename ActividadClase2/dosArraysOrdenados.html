@@ -31,11 +31,22 @@
         /*
         COMPLETA EL CÓDIGO EN ESTA SECCIÓN DEL PROGRAMA.
         */
-       if (arr1.length < arr2.length){
-        for (i; i < arr1.length; i++) {
-            
+       while (arr3.length < (arr1.length + arr2.length)){
+        if (i == (arr1.length)){
+            arr3.push(arr2[j]);
+            j++;
+        } else if (j == (arr2.length)){
+            arr3.push(arr1[i]);
+            i++;
+        } else if (arr1[i] <= arr2[j]){
+            arr3.push(arr1[i]);
+            i++;
+        } else if (arr1[i] >= arr2[j]){
+            arr3.push(arr2[j]);
+            j++;
         }
        }
+       
         document.getElementById("demo").innerHTML = arr3;
     </script>
 </body>
