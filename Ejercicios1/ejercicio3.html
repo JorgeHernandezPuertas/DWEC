@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +8,39 @@
 <body>
     <h1>TEST</h1>
     <h5>Pregunta 1</h5>
-    <p>¿5 + 2 es 7?</p>
-    <input type="radio" name="respuesta1" id="ver1"/> <label for="ver1">Verdadero</label>
-    <input type="radio" name="respuesta1" id="fal1"/> <label for="fal1">Falso</label>
+    <p id="pre1">¿5 + 2 es 7?</p>
+    <input type="radio" name="respuesta1" id="ver1" onclick="document.getElementById('pre1').style.color = 'green'"/> <label for="ver1">Verdadero</label>
+    <input type="radio" name="respuesta1" id="fal1" onclick="document.getElementById('pre1').style.color = 'red'"/> <label for="fal1">Falso</label>
 
     <h5>Pregunta 2</h5>
-    <p>¿5 + 2 es 7?</p>
-    <input type="radio" name="respuesta2" id="ver2"/> <label for="ver2">Verdadero</label>
-    <input type="radio" name="respuesta2" id="fal2"/> <label for="fal2">Falso</label>
+    <p id="pre2">¿5 + 2 es 6?</p>
+    <input type="radio" name="respuesta2" id="ver2" onclick="document.getElementById('pre2').style.color = 'red'"/> <label for="ver2">Verdadero</label>
+    <input type="radio" name="respuesta2" id="fal2" onclick="document.getElementById('pre2').style.color = 'green'"/> <label for="fal2">Falso</label>
 
     <h5>Pregunta 3</h5>
-    <p>¿5 + 2 es 7?</p>
-    <input type="radio" name="respuesta3" id="ver3"/> <label for="ver3">Verdadero</label>
-    <input type="radio" name="respuesta3" id="fal3"/> <label for="fal3">Falso</label>
+    <p id="pre3">¿5 + 5 es 7?</p>
+    <input type="radio" name="respuesta3" id="ver3" onclick="document.getElementById('pre3').style.color = 'red'"/> <label for="ver3">Verdadero</label>
+    <input type="radio" name="respuesta3" id="fal3" onclick="document.getElementById('pre3').style.color = 'green'"/> <label for="fal3">Falso</label>
 
     <h5>Pregunta 4</h5>
-    <p>¿5 + 2 es 7?</p>
-    <input type="radio" name="respuesta1" id="ver1"/> <label for="ver1">Verdadero</label>
-    <input type="radio" name="respuesta1" id="fal1"/> <label for="fal1">Falso</label>
+    <p id="pre4">¿5 + 5 es 10?</p>
+    <input type="radio" name="respuesta1" id="ver4" onclick="document.getElementById('pre4').style.color = 'green'"/> <label for="ver4">Verdadero</label>
+    <input type="radio" name="respuesta1" id="fal4" onclick="document.getElementById('pre4').style.color = 'red'"/> <label for="fal4">Falso</label>
+
+    <h5>Pregunta 5</h5>
+    <p id="pre5">¿5 + 10 es 9?</p>
+    <input type="radio" name="respuesta1" id="ver5" onclick="document.getElementById('pre5').style.color = 'red'"/> <label for="ver5">Verdadero</label>
+    <input type="radio" name="respuesta1" id="fal5" onclick="document.getElementById('pre5').style.color = 'green'"/> <label for="fal5">Falso</label>
+
+    <h5>Pregunta 6</h5>
+    <p id="pre6">¿5 + 7 es 12?</p>
+    <input type="radio" name="respuesta1" id="ver6" onclick="document.getElementById('pre6').style.color = 'green'"/> <label for="ver6">Verdadero</label>
+    <input type="radio" name="respuesta1" id="fal6" onclick="document.getElementById('pre6').style.color = 'red'"/> <label for="fal6">Falso</label>
+
+    <h5>Pregunta 7</h5>
+    <p id="pre7">¿5 + 10 es 15?</p>
+    <input type="radio" name="respuesta1" id="ver7" onclick="document.getElementById('pre7').style.color = 'green'"/> <label for="ver7">Verdadero</label>
+    <input type="radio" name="respuesta1" id="fal7" onclick="document.getElementById('pre7').style.color = 'red'"/> <label for="fal7">Falso</label>
+
 </body>
 </html>
