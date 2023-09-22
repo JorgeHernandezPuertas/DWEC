@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma recursiva de un array</title>
+</head>
+<body>
+    <p id="mensaje"></p>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+        
+        function sumaArray(longitud){
+            if (longitud == 1){
+                return arr[longitud - 1];
+            } else {
+                return arr[longitud - 1] + sumaArray(longitud - 1);
+            }
+        }
+        console.log ("El array es: " + arr);
+        console.log("El sumatorio es: " + sumaArray(arr.length));
+    </script>
+</body>
+</html>
