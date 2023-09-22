@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursividad</title>
+</head>
+<body>
+    <p>
+        let array = [1,2,3,4];
+        Array.isArray(array); // true
+    </p>
+    <script>
+        let numeros = [1,[2,3,4],[8,15,[5,1]],27];
+        console.log(numeros)
+        // ESCRIBE TU CÓDIGO AQUÍ
+        function sumaArray(longitud){
+            if (longitud == 1){
+                if (Array.isArray(numeros[longitud - 1])){
+                    return sumaArray(numeros[longitud - 1].length);
+                } else {
+                    return numeros[longitud - 1];
+                }
+            } else {
+                if (Array.isArray(numeros[longitud - 1])){
+                    return sumaArray(numeros[longitud - 1].length) + sumaArray(longitud - 1);
+                } else {
+                    return numeros[longitud - 1] + sumaArray(longitud - 1);
+                }
+            }
+        }
+        console.log ("El array es: " + numeros);
+        console.log("El sumatorio es: " + sumaArray(numeros.length));
+    </script>
+</body>
+</html>
