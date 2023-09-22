@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secuencia de karratraka</title>
+</head>
+<body>
+    <h2>Secuencia de karratraka</h2>
+    <p id="mensaje"></p>
+    <script>
+        function karratraka(num){
+            if (num < 3){
+                return 1;
+            } else {
+                return karratraka(num - 1) + karratraka(num - 2) + 1;
+            }
+        }
+        let num = 6;
+        let secuencia = "";
+        for (let i = 1; i <= num; i++) {
+            secuencia = secuencia + " " + karratraka(i);
+        }
+        document.getElementById("mensaje").innerHTML = "La secuencia hasta la posición " + num + " es: " + secuencia;
+    </script>
+</body>
+</html>
