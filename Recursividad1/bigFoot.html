@@ -30,8 +30,17 @@
         let arr =
         ["O","F","O","O","S","T","O","F","O","O","O","T","O","F","O","O","O","O","O","T"];
         // ESCRIBE TU CÓDIGO AQUÍ
-        function contarFoot(){
-            
+        // función recurviva para ver el foot más largo
+        function contarFoot(array, p){
+            if (array[p] == "F"){
+                let i = p;
+                while (array[i + 1] == "O"){
+                    i++;
+                }
+                
+            } else if (array[p] == "O"){
+
+            }
         }
         </script>
 </body>

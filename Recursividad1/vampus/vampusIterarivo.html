@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vampus Iterativo</title>
+</head>
+<body>
+    <h1>ARRAY VAMPIRO</h1>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <script>
+        let arr=[1,2,3,4,5,6 ,5,4,3,2,1];
+        /*INCLUYE TU CÓDIGO AQUÍ*/
+        // Hago la función que devuelve si el array dado es vampus o no
+        function vampus(array){
+            let esVampus = true;
+            for (let i = 0; i < array.length / 2;i++){
+                if (array[i] != array[array.length - (i + 1)]){
+                    esVampus = false;
+                    return esVampus;
+                }
+            }
+            return esVampus;
+        }
+
+        // Imprimo el array
+        document.getElementById("p1").innerHTML = "El array es: " + arr;
+
+        // Imprimo si es vampus o no
+        if (vampus(arr)){
+            document.getElementById("p2").innerHTML = "El array es vampus";
+        } else {
+            document.getElementById("p2").innerHTML = "El array no es vampus";
+        }
+    </script>
+</body>
+</html>
