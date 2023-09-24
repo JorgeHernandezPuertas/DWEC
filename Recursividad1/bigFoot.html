@@ -31,17 +31,37 @@
         ["O","F","O","O","S","T","O","F","O","O","O","T","O","F","O","O","O","O","O","T"];
         // ESCRIBE TU CÓDIGO AQUÍ
         // función recurviva para ver el foot más largo
-        function contarFoot(array, p){
-            if (array[p] == "F"){
-                let i = p;
-                while (array[i + 1] == "O"){
-                    i++;
-                }
-                
-            } else if (array[p] == "O"){
+        function contarFoot(array, p, max){
+            // Si el bigfoot aun no se ha encontrado es 0
+            if (max === undefined){
+                max = 0;
+            }
+            if (p === undefined){
+                p = 0;
+            }
 
+            // Si llego la final devuelvo el foot más grande que haya conseguido
+            if (p === array.length){
+                return max; 
+                // Si encuentro una "F" busco y cuento las "O"
+            } else if (array[p] === "F"){
+                let tamFoot = 2;
+                while (array[p + 1] === "O"){ // Voy incrementado la p y no hago otra variable porque si es una "O" me la puedo saltar para encontrar un foot
+                    p++;
+                    tamFoot++;
+                } 
+                // Una vez contadas las "O" miro si termina en "T"
+                if (array[p + 1] === "T" && tamFoot > max && tamFoot >= 4){ // Si termina en "T" y es más grande que el anterior devuelvo el tamaño del foot
+                    return contarFoot(array, p + 2, tamFoot); // Como ya se que el siguiente es una "T" me lo salto
+                } else { // Si no termina en "T" devuelvo que el tamaño maximo obtenido hasta ahora
+                    return contarFoot(array, p + 1, max); // Como no se si el siguiente es una "F" lo compruebo
+                }
+            } else { // Si no es una "F" sigo buscando foots
+                return contarFoot(array, p + 1, max);
             }
         }
+
+        console.log(contarFoot(arr));
         </script>
 </body>
 </html>
