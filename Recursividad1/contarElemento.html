@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursividad - Contar elementos en un array multidimensional</title>
+</head>
+<body>
+    <p>
+        let array = [1,2,3,4]; <br/>
+        Array.isArray(array); // true
+    </p>
+    <script>
+        let numeros = [1,[2,3,4],[8,15,[5,1]],27];
+        console.log(numeros)
+        // ESCRIBE TU CÓDIGO AQUÍ
+        function contarElemento(array, elemento, longitud){
+            if (longitud === undefined){
+                longitud = array.length;
+            }
+
+            if (longitud == 1){
+                if (Array.isArray(array[longitud - 1])){
+                    return contarElemento(array[longitud - 1], elemento, array[longitud - 1].length);
+                } else {
+                    if (array[longitud - 1] === elemento){
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                    
+                }
+            } else {
+                if (Array.isArray(array[longitud - 1])){
+                    return contarElemento(array[longitud - 1], elemento,  array[longitud - 1].length) + contarElemento(array, elemento, longitud - 1);
+                } else {
+                    if (array[longitud - 1] === elemento){
+                        return 1 + contarElemento(array, elemento, longitud - 1);
+                    } else {
+                        return contarElemento(array, elemento, longitud - 1);
+                    }
+                }
+            }
+        }
+        let elemento = 1;
+        console.log ("El array es: " + numeros);
+        console.log("El elemento " + elemento + " aperece " + contarElemento(numeros, elemento) + " veces.");
+    </script>
+</body>
+</html>
