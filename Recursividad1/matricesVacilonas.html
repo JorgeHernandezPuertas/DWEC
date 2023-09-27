@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursividad - Matrices vacilonas</title>
+</head>
+<body>
+    <h2>Matrices Vacilonas</h2>
+    <input type="number" id="numero" value="5" min="1" max="10" />
+    <p id="p"></p>
+    <input type="button" onclick="dale()" value="dale" />
+    <script>
+
+        function dale(){
+            let tam = document.getElementById("numero").value;
+            let matriz = crearVacilona(tam);
+            imprimirMatriz(matriz);
+        }
+
+        function crearVacilona(n){
+            let matriz = new Array(n);
+            for (let i = 0; i < n; i++) {
+                matriz[i] = new Array(n);
+                for (let j = 0; j < n; j++) {
+                    matriz[i][j] = elemento(i, j);
+                }
+            }
+            return matriz;
+        }
+
+        function elemento(f, c){
+            if (c === 0 || f === 0){
+                return 1;
+            } else {
+                return elemento(f - 1, c) + elemento(f, c - 1);
+            }
+        }
+
+        function imprimirMatriz(matriz){
+            let obj = document.getElementById("p");
+            obj.innerHTML = "La matriz vacilona es: <br/> ";
+            for (let i = 0; i < matriz.length; i++) {
+                for (let j = 0; j < matriz[i].length; j++) {
+                    obj.innerHTML += matriz[i][j] + " ";
+                }
+                obj.innerHTML += "<br/>";
+            }
+        }
+    </script>
+</body>
+</html>
