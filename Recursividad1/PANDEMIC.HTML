@@ -9,27 +9,31 @@
 
   <script>
   let biocenosis = [['P','P','G','H','H','R'],['P','P','G','H','H','G'],['P','G','R','H','H','G'],['G','R','R','H','G','G'],['R','R','H','H','G','P']];
+  let newBiocenosis = JSON.parse((JSON.stringify(biocenosis)));
+
+  console.log(biocenosis);
+
   function pandemic(x, y) {
-      if (!(x - 1 < 0 || y - 1 < 0 || x - 1 >= biocenosis.length || y - 1 >= biocenosis[x - 1].length)) {
-        if (biocenosis[x - 1][y - 1] === "M") {
-          biocenosis[x - 1][y - 1] = "m";
-          pandemic(x, y - 1);
-          pandemic(x - 1, y);
-          pandemic(x + 1, y);
-          pandemic(x, y + 1);
-        } else if (biocenosis[x - 1][y - 1] === "H") {
-          biocenosis[x - 1][y - 1] = " ";
-          pandemic(x - 1, y);
-          pandemic(x + 1, y);
-          pandemic(x, y + 1);
-          pandemic(x, y - 1);
+      if (!(x - 1 < 0 || y - 1 < 0 || x - 1 >= newBiocenosis.length || y - 1 >= newBiocenosis[x - 1].length)) {
+        if (newBiocenosis[x - 1][y - 1] === "M") {
+          newBiocenosis[x - 1][y - 1] = "m";
+          if (y - 2 >= 0 && newBiocenosis[x - 1][y - 2] == "M" || newBiocenosis[x - 1][y - 2] == "H") pandemic(x, y - 1);
+          if (x - 2 >= 0 && newBiocenosis[x - 2][y - 1] == "M" || newBiocenosis[x - 2][y - 1] == "H") pandemic(x - 1, y);
+          if (x < newBiocenosis.length && newBiocenosis[x][y - 1] == "M" || newBiocenosis[x][y - 1] == "H") pandemic(x + 1, y);
+          if (y < newBiocenosis[x - 1].length && newBiocenosis[x - 1][y] == "M" || newBiocenosis[x - 1][y] == "H") pandemic(x, y + 1);
+        } else if (newBiocenosis[x - 1][y - 1] === "H") {
+          newBiocenosis[x - 1][y - 1] = " ";
+          if (y - 2 >= 0 && newBiocenosis[x - 1][y - 2] == "H") pandemic(x, y - 1);
+          if (x - 2 >= 0 && newBiocenosis[x - 2][y - 1] == "H") pandemic(x - 1, y);
+          if (x < newBiocenosis.length && newBiocenosis[x][y - 1] == "H") pandemic(x + 1, y);
+          if (y < newBiocenosis[x - 1].length && newBiocenosis[x - 1][y] == "H") pandemic(x, y + 1);
         }
       }
     }
 
   let texto = document.getElementById("txt");
 
-  console.log(biocenosis);
+  
   
   texto.innerHTML = "Matriz sin contagiar:<br/><br/>";
   for(let i = 0;i < biocenosis.length; i++){
@@ -46,14 +50,14 @@
 
   console.log("El foco de infección es: (" + fila + ", " + columna + ")")
 
-  console.log(biocenosis);
+  console.log(newBiocenosis);
 
   texto.innerHTML += "<br/>El foco de infección es: (" + fila + ", " + columna + ")<br/>"
 
   texto.innerHTML += "<br/>Matriz contagiada:<br/><br/>";
-  for(let i = 0; i < biocenosis.length; i++){
-    for (let j = 0; j < biocenosis[i].length; j++) {
-      texto.innerHTML += biocenosis[i][j] + "&nbsp;&nbsp;";
+  for(let i = 0; i < newBiocenosis.length; i++){
+    for (let j = 0; j < newBiocenosis[i].length; j++) {
+      texto.innerHTML += newBiocenosis[i][j] + "&nbsp;&nbsp;";
     }
     texto.innerHTML += "<br/>";
   }
