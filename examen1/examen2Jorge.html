@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RECURSIVIDAD</title>
+</head>
+
+<body>
+    <script>
+        // Corrigeme este examen
+        let people = ["perico", "juanico",
+            "andres", "dimas", "gestas", "zarco", "maimonides",
+            "elias", "jeremias", "dimas", "dimas", "gestas"];
+        console.log(people)
+        // ESCRIBE TU CÓDIGO AQUÍ
+        const FindMyGuy = (palabra, c, p) => {
+            if (p === undefined) { // Si no ponen p la inicializo a 0
+                p = 0;
+            }
+            if (c === undefined){ //Si no ponen c la inicializo a 0
+                c = 0;
+            }
+
+            if (p == people.length - 1) { // Caso de salida, cuando llego al final del array
+                if (palabra == people[p]){ // Si es el que busco le sumo uno al contador y lo devuelvo
+                    return ++c;
+                } else { // Si no es el que busco devuelvo lo que lleve contado
+                    return c;
+                }
+            } else {
+                if (palabra == people[p]){ // Si lo encuentro sumo uno al contador y me muevo a la siguiente
+                    return FindMyGuy(palabra, c + 1, p + 1);
+                } else { // Si no lo encuentro no le sumo nada al contador y me muevo al siguiente
+                    return FindMyGuy(palabra, c, p + 1);
+                }
+            }
+        }
+
+        let nombre = "dimas";
+        console.log("El nombre " + nombre + " aparece en el array " + FindMyGuy("dimas") + " veces.");
+
+    </script>
+</body>
+
+</html>
