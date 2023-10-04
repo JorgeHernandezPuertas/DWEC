@@ -24,37 +24,96 @@
             let ganador = "Alemanes";
             for (let i = 0; i < arr.length; i++) {
                 for (let j = 0; j < arr[i].length; j++) {
-                    if (arr[i][j] == "A"){
-                        if (aislado(arr, i ,j)){
-                            ganador = "Rusos"; // Si encuentro un grupo aislado pongo que ganan los rusos y rompo el bucle
-                            break;
+                    if (arr[i][j] == "R") {
+                        if (aislan(arr, i, j)) {
+                            ganador = "Rusos";
                         }
+                        break;
                     }
                 }
             }
             return ganador;
         }
 
-        const aislado = (arr, i, j) => {
-            if (i < 0 || j < 0 || i >= arr.length || j >= arr[i].length){
-                return true; // Si se sale antes de encontrar un aleman es que esta aislado
-            } else if (arr[i][j] === "R"){ // Si encuentra ruso pongo que esta aislado
-                return true
-            } else if (arr[i][j] === "A"){
-                
-            } else {
-                aislado(arr, i + 1, j); // Abajo
-                aislado(arr, i - 1, j); // Arriba
-                aislado(arr, i, j - 1); // Izquierda
-                aislado(arr, i , j + 1); // Derecha
+        const aislan = (arr, i, j, iAnt, jAnt) => {
+            if (iAnt === undefined) {
+                iAnt = -1;
             }
+            if (jAnt === undefined) {
+                jAnt = -1;
+            }
+
+            // Entro en una R ya
+            if (i < 0 || j < 0 || i >= arr.length || j >= arr[i].length) { // Si llego al final
+                if (iAnt != -1) {
+                    return true;
+                }
+            } else {
+                if (arr[i + 1][j] === "R") {  // Abajo
+                    if (iAnt === i + 1 && jAnt === j) { // Si vengo de abajo devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i + 1, j, i, j);
+                    }
+                }
+                if (arr[i][j + 1] === "R") {  // Derecha
+                    if (iAnt === i && jAnt === j + 1) { // Si vengo de Derecha devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i, j + 1, i, j);
+                    }
+                }
+                if (arr[i][j - 1] === "R") { // Izquierda
+                    if (iAnt === i && jAnt === j - 1) {
+                        return false; // Si vengo de izquierda devuelvo false porque estoy dando la vuelta
+                    } else {
+                        return aislan(arr, i, j - 1, i, j);
+                    }
+                }
+                if (arr[i + 1][j - 1] === "R") { // Abajo-Izquierda
+                    if (iAnt === i + 1 && jAnt === j - 1) { // Si vengo de donde voy devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i + 1, j - 1, i, j);
+                    }
+                }
+                if (arr[i + 1][j + 1] === "R") { // Abajo-Derecha
+                    if (iAnt === i + 1 && jAnt === j + 1) { // Si vengo de donde voy devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i + 1, j + 1, i, j);
+                    }
+                }
+                if (arr[i - 1][j] === "R") { // Arriba
+                    if (iAnt === i - 1 && jAnt === j) { // Si vengo de arriba devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i - 1, j, i, j);
+                    }
+                }
+                if (arr[i - 1][j - 1] === "R") { // Arriba-Izquierda
+                    if (iAnt === i - 1 && jAnt === j - 1) { // Si vengo de donde voy devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i - 1, j - 1, i, j);
+                    }
+                }
+                if (arr[i - 1][j + 1] === "R") { // Arriba-Derecha
+                    if (iAnt === i - 1 && jAnt === j + 1) { // Si vengo de donde voy devuelvo false porque estoy dando la vuelta
+                        return false;
+                    } else {
+                        return aislan(arr, i - 1, j + 1, i, j);
+                    }
+                }
+            }
+                
         }
 
         const mostrarMatriz = (arr) => {
             let txt = document.getElementById("matriz");
             for (let i = 0; i < arr.length; i++) {
                 for (let j = 0; j < arr[i].length; j++) {
-                    if (arr[i][j] === ""){ // Cambio los vacios por guiones por visibilidad
+                    if (arr[i][j] === "") { // Cambio los vacios por guiones por visibilidad
                         txt.innerHTML += "-&nbsp;"
                     } else {
                         txt.innerHTML += arr[i][j] + " ";
@@ -65,12 +124,11 @@
         }
 
         const mostrarGanador = (str) => {
-            document.getElementById("ganador").innerHTML = "Ganan los " + ganador;
+            document.getElementById("ganador").innerHTML = "Ganan los " + str;
         }
 
-        mostrarGanador(calcularGanador(battlefield));
         mostrarMatriz(battlefield);
-
+        mostrarGanador(calcularGanador(battlefield));
     </script>
 
 </body>
