@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>STALINGRADO</h1>
+    <p id="matriz"></p>
+    <h2 id="ganador"></h2>
+
+    <script>
+        let battlefield = [
+            ["A", "A", "", "", "R", "", "", "", ""],
+            ["A", "A", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "A", "A"],
+            ["", "", "", "", "R", "", "", "A", "A"]
+        ];
+
+        const calcularGanador = (arr) => {
+            let ganador = "Alemanes";
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].length; j++) {
+                    if (arr[i][j] == "A"){
+                        if (aislado(arr, i ,j)){
+                            ganador = "Rusos"; // Si encuentro un grupo aislado pongo que ganan los rusos y rompo el bucle
+                            break;
+                        }
+                    }
+                }
+            }
+            return ganador;
+        }
+
+        const aislado = (arr, i, j) => {
+            if (i < 0 || j < 0 || i >= arr.length || j >= arr[i].length){
+                return true; // Si se sale antes de encontrar un aleman es que esta aislado
+            } else if (arr[i][j] === "R"){ // Si encuentra ruso pongo que esta aislado
+                return true
+            } else if (arr[i][j] === "A"){
+                
+            } else {
+                aislado(arr, i + 1, j); // Abajo
+                aislado(arr, i - 1, j); // Arriba
+                aislado(arr, i, j - 1); // Izquierda
+                aislado(arr, i , j + 1); // Derecha
+            }
+        }
+
+        const mostrarMatriz = (arr) => {
+            let txt = document.getElementById("matriz");
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].length; j++) {
+                    if (arr[i][j] === ""){ // Cambio los vacios por guiones por visibilidad
+                        txt.innerHTML += "-&nbsp;"
+                    } else {
+                        txt.innerHTML += arr[i][j] + " ";
+                    }
+                }
+                txt.innerHTML += "<br/>";
+            }
+        }
+
+        const mostrarGanador = (str) => {
+            document.getElementById("ganador").innerHTML = "Ganan los " + ganador;
+        }
+
+        mostrarGanador(calcularGanador(battlefield));
+        mostrarMatriz(battlefield);
+
+    </script>
+
+</body>
+
+</html>
