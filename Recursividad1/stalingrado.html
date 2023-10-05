@@ -14,7 +14,7 @@
             ["", "", "", "", "R", "", "", "", ""],
             ["", "", "", "", "R", "", "", "", ""],
             ["", "", "", "", "R", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "", "R", "", "", "", ""],
             ["", "", "", "", "R", "", "", "", ""],
             ["", "", "", "", "R", "", "", "A", "A"],
             ["", "", "", "", "R", "", "", "A", "A"]
@@ -61,10 +61,10 @@
                     return 0;
                 } else if (arr[i][j] === "A") {
                     arrPasado.push([i, j]);
-                    return 1 + contarAsRecursivo(arr, i + 1, j) + contarAsRecursivo(arr, i, j + 1);
+                    return 1 + contarAsRecursivo(arr, i + 1, j) + contarAsRecursivo(arr, i, j + 1) + contarAsRecursivo(arr, i, j - 1) + contarAsRecursivo(arr, i - 1, j);
                 } else {
                     arrPasado.push([i, j]);
-                    return contarAsRecursivo(arr, i + 1, j) + contarAsRecursivo(arr, i, j + 1);
+                    return contarAsRecursivo(arr, i + 1, j) + contarAsRecursivo(arr, i, j + 1) + contarAsRecursivo(arr, i, j - 1) + contarAsRecursivo(arr, i - 1, j);
                 }
             } else {
                 return 0
@@ -87,25 +87,18 @@
             }
         }
 
-        const mostrarGanador = (str) => {
-            document.getElementById("ganador").innerHTML = "Ganan los " + str;
-        }
-
-        const calcularGanador = (arr) => {
-            let str = "";
-            if (contarAs(arr) == contarAsRecursivo(arr)) {
-                str = "Alemanes";
+        let ganador = "";
+        if (contarAs(battlefield) == contarAsRecursivo(battlefield)) {
+                ganador = "Alemanes";
             } else {
-                str = "Rusos";
+                ganador = "Rusos";
             }
-            return str;
-        }
 
         console.log(contarAs(battlefield));
         console.log(contarAsRecursivo(battlefield));
 
         mostrarMatriz(battlefield);
-        mostrarGanador(calcularGanador(battlefield));
+        document.getElementById("ganador").innerHTML = "Ganan los " + ganador;
     </script>
 
 </body>
