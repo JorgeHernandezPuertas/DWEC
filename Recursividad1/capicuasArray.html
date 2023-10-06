@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CAPICUA</title>
+</head>
+
+<body>
+    <p id="txt"></p>
+
+    <br><br>
+    Crea un programa con una función recursiva que muestre todos los
+    números/letras capicúas encontrados en un array. Se entiende por capicúa
+    cuando tiene al menos 3 posiciones del array.
+    Por ejemplo con el array: 5 4 6 5 6 4 3 O S O<br><br>
+    mostrará: <br>
+    656<br>
+    46564<br>
+    OSO
+    <p>
+    <p>Pista:
+
+        const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+        console.log(animals.slice(2));
+        // expected output: Array ["camel", "duck", "elephant"]
+        console.log(animals.slice(2, 4));
+        // expected output: Array ["camel", "duck"]
+        console.log(animals.slice(2, 4).reverse());
+        // expected output: Array ["duck","camel"]
+    </p>
+    <script>
+        let arr =
+            ["5", "4", "6", "5", "6", "4", "3", "F", "O", "O", "O", "T", "O", "F", "O", "O", "R", "O", "O", "T", "T", "O"];
+        // ESCRIBE TU CÓDIGO AQUÍ
+        const comprobarCapicua = (array) => {
+            let esCapicua = true;
+            for (let i = 0; i < array.length / 2;i++){
+                if (array[i] != array[array.length - (i + 1)]){
+                    esCapicua = false;
+                    return esCapicua;
+                }
+            }
+            return esCapicua;
+        }
+
+        const verCapicuasRecurviso = (array, l, arrCapicuas) => {
+            if (l === undefined) {
+                l = arr.length - 1;
+            }
+            if (arrCapicuas === undefined) {
+                arrCapicuas = [];
+            }
+
+            if (l > 2) {
+                for (let i = 0; i < array.length - l + 1; i++) {
+                    let aux = JSON.parse(JSON.stringify(array)).slice(i, i + l);
+                    
+                    if (comprobarCapicua(aux)) {
+                        arrCapicuas.push(aux);
+                    }
+                }
+                return verCapicuasRecurviso(array, l - 1, arrCapicuas);
+            }
+            return arrCapicuas;
+        }
+        console.log(arr);
+        console.log(verCapicuasRecurviso(arr));
+
+
+    </script>
+</body>
+
+</html>
