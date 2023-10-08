@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 2</title>
+</head>
+
+<body>
+    <h2>Encontrar los 3 nombres más populares</h2>
+    <p id="array"></p>
+    <p id="parrafo"></p>
+    <script>
+        let nombres = ["cristina", "jorge", "dario", "cristina", "alvaro", "jorge", "jorge", "dario", 
+        "pepito", "grillo", "dario", "cristina", "grillo", "grillo", "grillo"];
+
+        const contarRepeticiones = (nombre, array) => {
+            let contador = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === nombre) contador++;
+            }
+            return contador;
+        }
+
+        const comprobarPopulares = (array, populares, nombre) => {
+            let repeticiones = contarRepeticiones(nombre, array);
+            let aux;
+            for (let j = 0; j < populares.length; j++) {
+                if (aux === undefined) {
+                    // Si es mayor lo cambio y me quedo con el cambiado para seguir viendo en los que queden
+                    if (populares[j][1] <= repeticiones){ 
+                        aux = populares [j];
+                        populares[j] = [nombre, repeticiones];
+                    }
+                } else { // En caso de ya haber cambiado compruebo con el que he quitado si es el mejor de los que quedan
+                    if (populares[j][1] <= aux[1]){
+                        let aux2 = populares[j][1]; // En caso de cambiar otra vez necesito otro aux solo para esta
+                        populares[j] = aux;
+                        aux = aux2;
+                    }
+                }
+            }
+            return populares;
+        }
+
+        const buscarPopulares = (array) => {
+            // Lo lleno con 3 arrays, porque cada array es el popular y el nº de ocurrencias
+            let populares = [["", 0], ["", 0], ["", 0]];
+
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] != populares[0][0] && array[i] != populares[1][0] && array[i] != populares[2][0]) {
+                    // Reorganizo los populares en función del que toque
+                    populares = comprobarPopulares(array, populares, array[i]);
+                }
+            }
+            return populares;
+        }
+
+        const mostrarArray = (array) => {
+            let txt = document.getElementById("array");
+            txt.innerHTML = "El array es: <br/>[ "
+            for (let i = 0; i < array.length; i++) {
+                if (i == array.length - 1) {
+                    txt.innerHTML += array[i] + "] ";
+                } else {
+                    txt.innerHTML += array[i] + ", ";
+                }
+            }
+        }
+
+        const mostrarPopulares = (array) => {
+            let txt = document.getElementById("parrafo");
+            txt.innerHTML = "Los más populares son:<br/> ";
+
+            for (let i = 0; i < array.length; i++) {
+                if (i == array.length - 1) {
+                    txt.innerHTML += array[i][0];
+                } else {
+                    txt.innerHTML += array[i][0] + ", ";
+                }
+            }
+        }
+
+        mostrarArray(nombres);
+        mostrarPopulares(buscarPopulares(nombres));
+
+    </script>
+</body>
+
+</html>

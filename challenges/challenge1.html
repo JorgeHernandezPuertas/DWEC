@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1</title>
+</head>
+<body>
+    <h2>Buscar el nombre más popular de un array</h2>
+    <p id="array"></p>
+    <p id="parrafo"></p>
+    <script>
+        let nombres = ["jorge", "dario", "cristina", "alvaro", "jorge", "jorge", "dario", "pepito", "grillo", "dario"];
+
+        const contarRepeticiones = (nombre, array) => {
+            let contador = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === nombre) contador++;
+            }
+            return contador;
+        }
+
+        const buscarPopular = (array) => {
+            let popular = "";
+            let ocurrenciasPopular = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] != popular){
+                    let repeticiones = contarRepeticiones(array[i], array);
+                    if (repeticiones > ocurrenciasPopular){ // Si es más popular que el que llevo lo cambio
+                        popular = array[i];
+                        ocurrenciasPopular = repeticiones;
+                    }
+                }
+            }
+            return popular;
+        }
+
+        const mostrarArray = (array) => {
+            let txt = document.getElementById("array");
+            txt.innerHTML = "[ "
+            for (let i = 0; i < array.length; i++) {
+                if (i == array.length - 1){
+                    txt.innerHTML += array[i] + "] ";
+                } else {
+                    txt.innerHTML += array[i] + ", ";
+                }
+                
+            }
+        }
+
+        mostrarArray(nombres);
+        let popular = buscarPopular(nombres);
+        document.getElementById("parrafo").innerHTML = "El nombre más popular es " + popular;
+
+    </script>
+</body>
+</html>
