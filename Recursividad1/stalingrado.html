@@ -20,6 +20,17 @@
             ["", "", "", "", "R", "", "", "A", "A"]
         ];
 
+        const encontrarAleman = (matriz) => {
+            for (let i = 0; i < matriz.length; i++) {
+                for (let j = 0; j < matriz[i].length; j++) {
+                    if (matriz[i][j] == "A"){
+                        return [i, j];
+                    }
+                }
+            }
+            return []; // Si no lo encuentro devuelvo array vacio
+        }
+
         const contarAs = (arr) => {
             contador = 0;
             for (let i = 0; i < arr.length; i++) {
@@ -88,8 +99,9 @@
             }
         }
 
+        let primeraA = encontrarAleman(battlefield);
         let ganador = "";
-        if (contarAs(battlefield) == contarAsRecursivo(battlefield)) {
+        if (contarAs(battlefield) == contarAsRecursivo(battlefield, primeraA[0], primeraA[1])) {
                 ganador = "Alemanes";
             } else {
                 ganador = "Rusos";

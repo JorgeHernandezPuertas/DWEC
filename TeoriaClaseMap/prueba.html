@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba maps</title>
+</head>
+<body>
+    <script>
+        var dias = ["lunes", "martes", "miércoles", ["jueves", "viernes"], "sabado", "domingo"];
+
+        console.log(dias.flat().filter((v, i, prueba) => v.length > 6));
+        console.log(dias.flat().filter((v) => {return v.length > 6}));
+        console.log("Los días de la semana son: " + dias.flat().reduce((v1, v2) => v1 + ", " + v2));
+    </script>
+</body>
+</html>

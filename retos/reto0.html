@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 0</title>
+</head>
+
+<body>
+    <h2>Reto 0</h2>
+    <input type="text" name="cp" id="cp" />
+    <button onclick="buscar()">Buscar</button>
+    <p id="resultado"></p>
+    <script>
+        let ciudades = [{ "cp": 29680, "ciudad": "Estepona" }, { "cp": 29601, "ciudad": "Marbella" }];
+        const buscar = () => {
+            let cp = document.getElementById("cp").value;
+            let objeto = ciudades.find((v) => v.cp == cp);
+            if (objeto === undefined) {
+                document.getElementById("resultado").innerHTML = "La ciudad no existe";
+            } else {
+                let ciudad = objeto.ciudad;
+                document.getElementById("resultado").innerHTML = "La ciudad con CP: " + cp + " es " + ciudad;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

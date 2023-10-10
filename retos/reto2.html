@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>retos JavaScript</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <script>
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+
+        let listaUnica = [];
+        // Lleno la lista unica
+        listaUnica.push(cars.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
+        listaUnica.push(carrakos.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
+        listaUnica = listaUnica.flat();
+        // Hago console.log para comprobar
+        console.log("Juntar listas:");
+        console.log(cars);
+        console.log(carrakos);
+        console.log(listaUnica);
+
+        //Alguien sabría decirme los coches de carrakos que no estén en cars?
+        let carrakosNoCars = carrakos.flat(2).filter((v) => cars.flat(2).find((v2) => v2 == v) === undefined);
+        // Hago console.log para comprobar
+        console.log("Carrokos que no son cars:");
+        console.log(cars.flat(2));
+        console.log(carrakos.flat(2));
+        console.log(carrakosNoCars);
+
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        var buddies = [{ firstName: "Chuck", lastName: "Norris", car: "Honda" }, { firstName: "Yakie", lastName: "Chang", car: "BMV" }, { firstName: "Bruce", lastName: "Lee", car: "Honda" }, { firstName: "Steven", lastName: "Seagal", car: "Lada" }];
+        //-Nombre y apellidos de los buddies que usan un Honda
+        console.log("Buddies:");
+
+        let buddiesUsanHonda = buddies.filter((v) => v.car == "Honda");
+        console.log(buddies)
+        console.log(buddiesUsanHonda);
+
+        //-Marcas utilizadas por los buddies
+        let marcasUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2 == v) != undefined);
+
+        //-Marcas no utilizadas por los buddies.
+        let marcasNoUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2 == v) === undefined);
+
+        //-Cuantas marcas han sido utilizadas
+        let marcasUsadas = marcasUsadasBuddies.length;
+
+        //-Cuantas marcas no han sido utilizadas
+        let marcasNoUsadas = marcasNoUsadasBuddies.length;
+
+
+    </script>
+</body>
+
+</html>
