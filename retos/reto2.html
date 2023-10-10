@@ -34,22 +34,33 @@
         var buddies = [{ firstName: "Chuck", lastName: "Norris", car: "Honda" }, { firstName: "Yakie", lastName: "Chang", car: "BMV" }, { firstName: "Bruce", lastName: "Lee", car: "Honda" }, { firstName: "Steven", lastName: "Seagal", car: "Lada" }];
         //-Nombre y apellidos de los buddies que usan un Honda
         console.log("Buddies:");
+        console.log(buddies);
 
         let buddiesUsanHonda = buddies.filter((v) => v.car == "Honda");
-        console.log(buddies)
+        console.log("Buddies que usan honda:");
         console.log(buddiesUsanHonda);
 
         //-Marcas utilizadas por los buddies
-        let marcasUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2 == v) != undefined);
+        let marcasUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2.car == v) != undefined);
+        console.log("Marcas usadas por los buddies:");
+        console.log(marcasUsadasBuddies);
 
         //-Marcas no utilizadas por los buddies.
-        let marcasNoUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2 == v) === undefined);
+        let marcasNoUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2.car == v) === undefined);
+        console.log("Marcas no usadas por los buddies:");
+        console.log(marcasNoUsadasBuddies);
 
         //-Cuantas marcas han sido utilizadas
         let marcasUsadas = marcasUsadasBuddies.length;
+        console.log("Numero de marcas usadas por los buddies:");
+        console.log(marcasUsadas);
+
+
 
         //-Cuantas marcas no han sido utilizadas
         let marcasNoUsadas = marcasNoUsadasBuddies.length;
+        console.log("Numero de marcas no usadas por los buddies:");
+        console.log(marcasNoUsadas);
 
 
     </script>
