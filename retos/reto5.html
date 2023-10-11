@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 5</title>
+</head>
+<body>
+    <h2>Reto 5</h2>
+    <script>
+        let frutas = ["aguacate","pera","manzana","naranja","tomate","granada", "mango", "litchi","nispero"];
+        let tropicales = ["aguacate", "mango", "litchi","nispero"];
+        let tropicStock = [{fruta:"aguacate",stock:50}, {fruta:"mango",stock:10}, {fruta:"litchi",stock:20},{fruta:"nispero",stock:25}];
+        // frutas del array frutas que sean tropicales
+        let stockTropicales = tropicStock.filter(f => tropicales.find(t => t == f.fruta) != undefined).map(f => f.fruta);
+        console.log("Frutas tropicales: " + tropicales);
+        console.log("Frutas tropicales del stock: " + stockTropicales);
+
+        // frutas del array frutas que NO sean tropicales
+        let stockNoTropicales = tropicStock.filter(f => tropicales.find(t => t == f.fruta) === undefined).map(f => f.fruta);
+        console.log("Frutas tropicales: " + tropicales);
+        console.log("Frutas no tropicales del stock: " + stockNoTropicales);
+        
+        //Nombre de las frutas con un stock mayor de 21
+        let frutasMayor21 = tropicStock.filter(f => f.stock > 21).map(f => f.fruta);
+        console.log("Frutas del stock: " + tropicStock.map(f => f.fruta));
+        console.log("Frutas con stock mayor a 21: " + frutasMayor21);
+        
+        </script>
+</body>
+</html>
