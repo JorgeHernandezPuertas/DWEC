@@ -32,13 +32,14 @@
 
         var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
         var buddies = [{ firstName: "Chuck", lastName: "Norris", car: "Honda" }, { firstName: "Yakie", lastName: "Chang", car: "BMV" }, { firstName: "Bruce", lastName: "Lee", car: "Honda" }, { firstName: "Steven", lastName: "Seagal", car: "Lada" }];
-        //-Nombre y apellidos de los buddies que usan un Honda
+        
         console.log("Buddies:");
         console.log(buddies);
 
-        let buddiesUsanHonda = buddies.filter((v) => v.car == "Honda");
+        //-Nombre y apellidos de los buddies que usan un Honda
+        let buddiesUsanHonda = buddies.filter((v) => v.car == "Honda").reduce((v1, v2) => v1.firstName + " " + v1.lastName + ", " + v2.firstName + " " + v2.lastName);
         console.log("Buddies que usan honda:");
-        console.log(buddiesUsanHonda);
+        console.log("Los buddies que usan Honda son: " + buddiesUsanHonda);
 
         //-Marcas utilizadas por los buddies
         let marcasUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2.car == v) != undefined);
