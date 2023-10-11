@@ -13,15 +13,9 @@
 
         let listaUnica = [];
         // Lleno la lista unica
-        listaUnica = cars.concat(carrakos).flat(Infinity);
-        listaUnica = listaUnica.map(v  => {
-            listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
-            if (listaUnica.filter(v2 => v == v2).length > 1 && listaUnica.find(v3 => v3 == v) != undefined){
-                return listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
-            } else {
-                return listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
-            }
-        });
+        listaUnica.push(cars.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
+        listaUnica.push(carrakos.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
+        listaUnica = listaUnica.flat();
         
         // Hago console.log para comprobar
         console.log("Juntar listas:");
@@ -52,12 +46,12 @@
         console.log("Los buddies que usan Honda son: " + buddiesUsanHonda);
 
         //-Marcas utilizadas por los buddies
-        let marcasUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2.car == v) != undefined);
+        let marcasUsadasBuddies = listaUnica.flat(2).filter((v) => buddies.find((v2) => v2.car == v) != undefined);
         console.log("Marcas usadas por los buddies:");
         console.log(marcasUsadasBuddies);
 
         //-Marcas no utilizadas por los buddies.
-        let marcasNoUsadasBuddies = cars.flat(2).filter((v) => buddies.find((v2) => v2.car == v) === undefined);
+        let marcasNoUsadasBuddies = listaUnica.flat(2).filter((v) => buddies.find((v2) => v2.car == v) === undefined);
         console.log("Marcas no usadas por los buddies:");
         console.log(marcasNoUsadasBuddies);
 
