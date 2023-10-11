@@ -13,13 +13,23 @@
 
         let listaUnica = [];
         // Lleno la lista unica
-        listaUnica.push(cars.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
-        listaUnica.push(carrakos.flat(2).filter((v) => listaUnica.flat(2).find((v2) => v2 == v) === undefined));
-        listaUnica = listaUnica.flat();
+        listaUnica = cars.concat(carrakos).flat(Infinity);
+        listaUnica = listaUnica.map(v  => {
+            listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
+            if (listaUnica.filter(v2 => v == v2).length > 1 && listaUnica.find(v3 => v3 == v) != undefined){
+                return listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
+            } else {
+                return listaUnica.filter(v2 => v == v2).find(v3 => v == v3);
+            }
+        });
+        
         // Hago console.log para comprobar
         console.log("Juntar listas:");
-        console.log(cars);
-        console.log(carrakos);
+        console.log("Cars: ");
+        console.log(cars.flat(Infinity));
+        console.log("Carrakos" );
+        console.log(carrakos.flat(Infinity));
+        console.log("Lista Unica");
         console.log(listaUnica);
 
         //Alguien sabría decirme los coches de carrakos que no estén en cars?
