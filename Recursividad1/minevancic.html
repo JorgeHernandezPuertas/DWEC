@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minevancic</title>
+</head>
+
+<body>
+    <h2>Minevancic</h2>
+    <p id="parrafo1">La matriz inicial es: <br/><br/></p>
+    <button onclick="pulsado()">¡Dale color!</button>
+    <p id="parrafo2"></p>
+    <script>
+        let minas = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ];
+
+        const mostrarMatriz = (matriz, id) => {
+            let obj = document.getElementById(id);
+
+            for (let i = 0; i < matriz.length; i++) {
+                obj.innerHTML += matriz[i].reduce((e1, e2) => e1 + "&nbsp;" + e2) + "<br/>";
+            }
+        }
+
+        const color = (matriz) => {
+            // Hago una copia para no modificar la matriz original
+            let copia = JSON.parse(JSON.stringify(matriz));
+            for (let i = 0; i < copia.length; i++) {
+                for (let j = 0; j < copia[i].length; j++) {
+                    // Por cada bomba marco las distancias
+                    if (copia[i][j] == 1) {
+                        marcarDistancias(copia, i, j);
+                    }
+                }
+            }
+            return copia;
+        }
+
+        const marcarDistancias = (matriz, iCentro, jCentro) => {
+            // Cojo el rango max como el length más grande
+            let rangoMax = matriz.length < matriz[iCentro].length ? matriz[iCentro].length:matriz.length;
+
+            // Para todos los rangos posibles
+            for (let rango = 1; rango < rangoMax; rango++) {
+                // Recorro el area del rango que toque
+                for (let i = iCentro - rango; i <= iCentro + rango; i++) {
+                    for (let j = jCentro - rango; j <= jCentro + rango; j++) {
+                        // Si está dentro de la matriz
+                        if (i >= 0 && j >= 0 && i < matriz.length && j < matriz[i].length){
+                            // Miro solo el perimetro del rango, que es lo único que necesito
+                            if (i == iCentro - rango || j == jCentro - rango || i == iCentro + rango || j == iCentro + rango){
+                                // Si el elemento no es la bomba y es mayor que el rango o 0 (que no se ha cambiado) lo cambio por el rango menor q le toque
+                                if (matriz[i][j] != 1 && (matriz[i][j] > rango || matriz[i][j] == 0)){
+                                    // Si el rango es mayor o igual que 5 lo dejo en 5
+                                    matriz[i][j] = rango >= 5 ? 5:rango + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        const pulsado = () => {
+            let minasMarcadas = color(minas);
+            document.getElementById("parrafo2").innerHTML = "La matriz coloreada es: <br/><br/>";
+            mostrarMatriz(minasMarcadas, "parrafo2");
+        }
+
+        // Muestro la matriz inicial
+        mostrarMatriz(minas, "parrafo1");
+
+    </script>
+</body>
+
+</html>
