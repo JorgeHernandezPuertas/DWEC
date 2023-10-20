@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>retos JavaScript</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <ul id="carrakos"> </ul>
+
+    <script>
+
+        let carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        let xungos = [{ nombre: "Bruce Lee", carros: ["Chevrolet", "Tesla", "BMW"] }, { nombre: "YakiChan", carros: ["Lexus", "Mercedes", "Kia"] }]
+
+        const hacerLista = (array, ulPadre) => {
+            array.map(c => {
+
+                if (Array.isArray(c)) {
+                    let ul = document.createElement("ul");
+                    hacerLista(c, ul);
+                    ulPadre.appendChild(ul);
+                } else {
+                    let propietario = xungos.map(v => {
+                        if (v.carros.find(v2 => c == v2) != undefined) {
+                            return v.nombre;
+                        }
+                        return undefined;
+                    }).filter(v => v != undefined)[0];
+
+                    if (propietario === undefined) {
+                        let li = document.createElement("li");
+                        let cont = document.createTextNode(c);
+                        li.appendChild(cont);
+                        ulPadre.appendChild(li);
+                    } else {
+                        let li = document.createElement("li");
+                        let cont = document.createTextNode(c + " de " + propietario);
+                        li.appendChild(cont);
+                        ulPadre.appendChild(li);
+                    }
+                }
+            })
+        }
+
+        let ulPadre = document.getElementById("carrakos");
+
+        hacerLista(carrakos, ulPadre);
+
+    </script>
+</body>
+
+</html>
