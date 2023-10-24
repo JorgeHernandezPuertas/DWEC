@@ -21,10 +21,13 @@ initial-scale=1.0" />
         // ESCRIBE AQUÍ TU CÓDIGO
         TORTAS.map(v => {
             if (clientaUno != v && numclientaUno < TORTAS.filter(v2 => v2 == v).length) {
+                numclientaTres = numclientaDos;
+                numclientaDos = numclientaUno;
                 numclientaUno = TORTAS.filter(v2 => v2 == v).length;
                 clientaUno = v;
             }
             if (clientaDos != v && clientaUno != v && numclientaDos < TORTAS.filter(v2 => v2 == v).length) {
+                numclientaTres = numclientaDos;
                 numclientaDos = TORTAS.filter(v2 => v2 == v).length;
                 clientaDos = v;
             }
