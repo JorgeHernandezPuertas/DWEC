@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 8</title>
+</head>
+
+<body>
+    <h2>Challenge 8. Reyes de última generación</h2>
+    <script>
+        REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro", ["hola", ["prueba"]]], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+
+
+        const ultimaGen = (array, ultGen, gen, genMax) => {
+            if (ultGen === undefined) {
+                ultGen = [];
+            }
+
+            if (gen === undefined) {
+                gen = 1;
+            }
+
+            if (genMax === undefined) {
+                genMax = 1;
+            }
+
+
+
+            if (array.find(e => Array.isArray(e)) != undefined) {
+                array.map(e => {
+                    if (Array.isArray(e)) {
+                        if (gen > genMax) {
+                            genMax = gen;
+                        }
+                        ultimaGen(e, ultGen, gen++, genMax);
+                    }
+                });
+            } else {
+                if (gen > genMax) {
+                    ultGen.splice(0, ultGen.length);
+                    array.map(e => ultGen.push(e));
+                }
+            }
+
+        }
+
+        let prueba = [];
+        ultimaGen(REYES, prueba);
+
+        console.log(prueba);
+
+    </script>
+</body>
+
+</html>
