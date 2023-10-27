@@ -10,7 +10,7 @@
 <body>
     <h2>Challenge 8. Reyes de última generación</h2>
     <script>
-        REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro", ["hola", ["prueba"]]], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+        REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
 
 
         const ultimaGen = (array, ultGen, gen, genMax) => {
@@ -26,20 +26,19 @@
                 genMax = 1;
             }
 
-
-
             if (array.find(e => Array.isArray(e)) != undefined) {
                 array.map(e => {
                     if (Array.isArray(e)) {
-                        if (gen > genMax) {
-                            genMax = gen;
-                        }
+
                         ultimaGen(e, ultGen, gen++, genMax);
                     }
                 });
             } else {
-                if (gen > genMax) {
+                if (gen > genMax) { // Si llego a un nivel más bajo reseteo el array
+                    genMax = gen;
                     ultGen.splice(0, ultGen.length);
+                    array.map(e => ultGen.push(e));
+                } else if (gen == genMax) {
                     array.map(e => ultGen.push(e));
                 }
             }
@@ -49,7 +48,7 @@
         let prueba = [];
         ultimaGen(REYES, prueba);
 
-        console.log(prueba);
+        console.log(prueba.reduce((e1, e2) => e1 + ", " + e2));
 
     </script>
 </body>
