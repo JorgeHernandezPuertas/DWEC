@@ -9,46 +9,51 @@
 
 <body>
     <h2>Challenge 8. Reyes de última generación</h2>
+    <h3>La última generación es: </h4>
+    <p id="resultado"></p>
     <script>
         REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
 
-
-        const ultimaGen = (array, ultGen, gen, genMax) => {
+        const buscarUltima = (array, ultGen, infoGen) => {
+            // Utilizo un array para guardar la ultGen, porque si no lo guardo aquí si hay más de una última gen solo devolvería la ultima
             if (ultGen === undefined) {
                 ultGen = [];
             }
-
-            if (gen === undefined) {
-                gen = 1;
-            }
-
-            if (genMax === undefined) {
-                genMax = 1;
-            }
-
-            if (array.find(e => Array.isArray(e)) != undefined) {
-                array.map(e => {
-                    if (Array.isArray(e)) {
-
-                        ultimaGen(e, ultGen, gen++, genMax);
-                    }
-                });
-            } else {
-                if (gen > genMax) { // Si llego a un nivel más bajo reseteo el array
-                    genMax = gen;
-                    ultGen.splice(0, ultGen.length);
-                    array.map(e => ultGen.push(e));
-                } else if (gen == genMax) {
-                    array.map(e => ultGen.push(e));
+            // Uso un objeto para guardar esta información porque si no la pierdo en las llamadas con variables primitivas
+            if (infoGen === undefined) {
+                infoGen = {
+                    gen: 1,
+                    genMax: 1
                 }
             }
 
-        }
+            array.map(e => {
+                if (Array.isArray(e)) {
+                    infoGen.gen++
+                    buscarUltima(e, ultGen, infoGen);
+                } else {
+                    // Cambio la ultima generacion si por la que voy es mayor
+                    if (infoGen.gen > infoGen.genMax) {
+                        infoGen.genMax = infoGen.gen;
+                        ultGen.splice(0, ultGen.length); // Borro el array que llevo
+                        ultGen.push(e);
+                    } else if (infoGen.gen == infoGen.genMax) { // Si la generación es la máxima relleno el array
+                        ultGen.push(e);
+                    }
+                }
+            })
+            // Reseteo la generación actual al finalizar cada llamada
+            infoGen.gen = 1;
+        };
 
-        let prueba = [];
-        ultimaGen(REYES, prueba);
-
-        console.log(prueba.reduce((e1, e2) => e1 + ", " + e2));
+        let ultGen = [];
+        buscarUltima(REYES, ultGen);
+        // Uso reduce para que salga con mejor formato el resultado
+        console.log("El array de reyes es:");
+        console.log(REYES);
+        console.log("La última generación es:");
+        console.log(ultGen.reduce((e1, e2) => e1 + ", " + e2));
+        document.getElementById("resultado").innerHTML = ultGen.reduce((e1, e2) => e1 + ", " + e2);
 
     </script>
 </body>
