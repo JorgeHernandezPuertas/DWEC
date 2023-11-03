@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UNION LIST</title>
+</head>
+
+<body>
+    PRIMERA LISTA:
+    <ul id="lista1">
+        <li>manzana</li>
+        <li>pera</li>
+        <ul>
+            <li>conferencia</li>
+            <ul>
+                <li>conferenciaverde</li>
+                <li>conferenciaamarilla</li>
+                <li>conferenciaroja</li>
+            </ul>
+            <li>peradeagua</li>
+            <li>peritadulce</li>
+            <ul>
+                <li>Dimas</li>
+                <li>Gestas</li>
+                <li>Malakatos</li>
+                <li>Jose</li>
+            </ul>
+        </ul>
+        <li>limon</li>
+        <li>limon</li>
+        <li>LIMON</li>
+    </ul>
+    Segunda lista:
+    <ul id="lista2">
+        <li>manzana</li>
+        <li>manzana</li>
+        <ul>
+            <li>manzana</li>
+            <li>manzana</li>
+        </ul>
+        <li>pera</li>
+        <li>limon</li>
+    </ul>
+    <ol id="lista3">
+    </ol>
+    <script>
+
+        const comprimirElementos = (nodoPadre, arrayResultado) => {
+            if (arrayResultado === undefined){
+                arrayResultado = [];
+            }
+
+            let conjuntoHijos = nodoPadre.children;
+
+            for (let i = 0; i < conjuntoHijos.length; i++) {
+                if (conjuntoHijos[i].nodeName == "UL"){
+                    comprimirElementos(conjuntoHijos[i], arrayResultado);
+                } else {
+                    arrayResultado.push(conjuntoHijos[i].innerHTML);
+                }
+            }
+        }
+
+        const eliminarDuplicados = (array) => {
+            return array.filter((e, i, arr) => (i == arr.length - 1 || e.toUpperCase() != arr[i + 1].toUpperCase()));
+        }
+
+        // Creo las variables que voy a utilizar
+        let arrayUnion = [];
+        let lista1 = document.getElementById("lista1");
+        let lista2 = document.getElementById("lista2");
+        let lista3 = document.getElementById("lista3");
+
+        // Uno las dos listas
+        comprimirElementos(lista1, arrayUnion);
+        comprimirElementos(lista2, arrayUnion);
+
+        // Elimino duplicados
+        arrayUnion.sort();
+        arrayUnion = eliminarDuplicados(arrayUnion);
+        console.log(arrayUnion);
+        arrayUnion.sort();
+
+        // Lo meto en la lista 3 y lo saco por consola
+        arrayUnion.map(e => {
+            let li = document.createElement("li");
+            let contenido = document.createTextNode(e);
+            li.appendChild(contenido);
+            lista3.appendChild(li);
+        })
+
+        console.log("Lista union sin repetidos y ordenada:")
+        arrayUnion.map(e => console.log(e));
+
+    </script>
+</body>
+
+</html>
