@@ -9,7 +9,7 @@
 
 <body>
     <h2>Minevancic</h2>
-    <p id="parrafo1">La matriz inicial es: <br/><br/></p>
+    <p id="parrafo1">La matriz inicial es: <br /><br /></p>
     <button onclick="pulsado()">¡Dale color!</button>
     <p id="parrafo2"></p>
     <script>
@@ -46,7 +46,7 @@
 
         const marcarDistancias = (matriz, iCentro, jCentro) => {
             // Cojo el rango max como el length más grande
-            let rangoMax = matriz.length < matriz[iCentro].length ? matriz[iCentro].length:matriz.length;
+            let rangoMax = matriz.length < matriz[iCentro].length ? matriz[iCentro].length : matriz.length;
 
             // Para todos los rangos posibles
             for (let rango = 1; rango < rangoMax; rango++) {
@@ -54,13 +54,13 @@
                 for (let i = iCentro - rango; i <= iCentro + rango; i++) {
                     for (let j = jCentro - rango; j <= jCentro + rango; j++) {
                         // Si está dentro de la matriz
-                        if (i >= 0 && j >= 0 && i < matriz.length && j < matriz[i].length){
+                        if (i >= 0 && j >= 0 && i < matriz.length && j < matriz[i].length) {
                             // Miro solo el perimetro del rango, que es lo único que necesito
-                            if (i == iCentro - rango || j == jCentro - rango || i == iCentro + rango || j == iCentro + rango){
+                            if (i == iCentro - rango || j == jCentro - rango || i == iCentro + rango || j == iCentro + rango) {
                                 // Si el elemento no es la bomba y es mayor que el rango o 0 (que no se ha cambiado) lo cambio por el rango menor q le toque
-                                if (matriz[i][j] != 1 && (matriz[i][j] > rango || matriz[i][j] == 0)){
+                                if (matriz[i][j] != 1 && (matriz[i][j] > rango || matriz[i][j] == 0)) {
                                     // Si el rango es mayor o igual que 5 lo dejo en 5
-                                    matriz[i][j] = rango >= 5 ? 5:rango + 1;
+                                    matriz[i][j] = rango >= 5 ? 5 : rango + 1;
                                 }
                             }
                         }
