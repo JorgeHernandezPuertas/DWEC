@@ -5,13 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minevancic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        div#contenedor {
+            display: flex;
+            flex-flow: row wrap;
+            width: 50%;
+            padding: 1rem;
+        }
+
+        div#contenedor div {
+            min-width: 30rem;
+            flex: 50%;
+            margin-bottom: 1rem;
+        }
+
+        div#contenedor>button {
+            order: 1;
+        }
+    </style>
 </head>
 
 <body>
     <h2>Minevancic</h2>
-    <p id="parrafo1">La matriz inicial es: <br /><br /></p>
-    <button onclick="pulsado()">¡Dale color!</button>
-    <p id="parrafo2"></p>
+    <div id="contenedor">
+        <div id="contenedor1">
+            <p>La matriz inicial es: </p>
+        </div>
+        <button onclick="pulsado()">¡Dale color!</button>
+        <div id="contenedor2">
+            <p id="parrafo"></p>
+        </div>
+    </div>
+
     <script>
         let minas = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -22,11 +49,49 @@
             [0, 0, 0, 0, 0, 0, 0],
         ];
 
-        const mostrarMatriz = (matriz, id) => {
-            let obj = document.getElementById(id);
+        const elegirFondo = (obj) => {
 
-            for (let i = 0; i < matriz.length; i++) {
-                obj.innerHTML += matriz[i].reduce((e1, e2) => e1 + "&nbsp;" + e2) + "<br/>";
+            switch (Number(obj.value)) {
+                case 1:
+                    obj.style.backgroundColor = "red";
+                    obj.style.borderColor = "red";
+                    break;
+                case 2:
+                    obj.style.backgroundColor = "yellow";
+                    obj.style.borderColor = "yellow";
+                    break;
+                case 3:
+                    obj.style.backgroundColor = "cyan";
+                    obj.style.borderColor = "cyan";
+                    break;
+                case 4:
+                    obj.style.backgroundColor = "blue";
+                    obj.style.borderColor = "blue";
+                    break;
+                case 5:
+                    obj.style.backgroundColor = "pink";
+                    obj.style.borderColor = "pink";
+                    break;
+                default:
+                    obj.style.backgroundColor = "gray";
+                    obj.style.borderColor = "gray";
+                    break;
+            }
+        }
+
+        const mostrarMatriz = (matriz, obj) => {
+            if (!(obj.children.length > 2)) {
+                for (let i = 0; i < matriz.length; i++) {
+                    for (let j = 0; j < matriz[i].length; j++) {
+                        let boton = document.createElement("button");
+                        boton.innerHTML = matriz[i][j];
+                        boton.value = matriz[i][j];
+                        boton.class = "btn btn-dark";
+                        elegirFondo(boton);
+                        obj.appendChild(boton);
+                    }
+                    obj.innerHTML += "<br>";
+                }
             }
         }
 
@@ -71,12 +136,16 @@
 
         const pulsado = () => {
             let minasMarcadas = color(minas);
-            document.getElementById("parrafo2").innerHTML = "La matriz coloreada es: <br/><br/>";
-            mostrarMatriz(minasMarcadas, "parrafo2");
+            let contenedor2 = document.getElementById("contenedor2")
+            let parrafo = document.getElementById("parrafo")
+            parrafo.innerHTML = "La matriz coloreada es:";
+            mostrarMatriz(minasMarcadas, contenedor2);
         }
 
         // Muestro la matriz inicial
-        mostrarMatriz(minas, "parrafo1");
+        mostrarMatriz(minas, document.getElementById("contenedor1"));
+
+
 
     </script>
 </body>
