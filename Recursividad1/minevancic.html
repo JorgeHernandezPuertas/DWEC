@@ -8,21 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        div#contenedor {
-            display: flex;
-            flex-flow: row wrap;
-            width: 50%;
-            padding: 1rem;
+        body {
+            padding:1rem;
         }
-
-        div#contenedor div {
-            min-width: 30rem;
-            flex: 50%;
+        div{
             margin-bottom: 1rem;
         }
 
-        div#contenedor>button {
-            order: 1;
+        div div button {
+            width: 2rem;
         }
     </style>
 </head>
@@ -30,9 +24,6 @@
 <body>
     <h2>Minevancic</h2>
     <div id="contenedor">
-        <div id="contenedor1">
-            <p>La matriz inicial es: </p>
-        </div>
         <button onclick="pulsado()">¡Dale color!</button>
         <div id="contenedor2">
             <p id="parrafo"></p>
@@ -50,7 +41,7 @@
         ];
 
         const elegirFondo = (obj) => {
-
+            obj.innerHTML = obj.value;
             switch (Number(obj.value)) {
                 case 1:
                     obj.style.backgroundColor = "red";
@@ -83,12 +74,7 @@
             if (!(obj.children.length > 2)) {
                 for (let i = 0; i < matriz.length; i++) {
                     for (let j = 0; j < matriz[i].length; j++) {
-                        let boton = document.createElement("button");
-                        boton.innerHTML = matriz[i][j];
-                        boton.value = matriz[i][j];
-                        boton.class = "btn btn-dark";
-                        elegirFondo(boton);
-                        obj.appendChild(boton);
+                        obj.innerHTML += "<button type='submit' onclick='elegirFondo(this)' value='" + matriz[i][j] + "'>&nbsp;</button>";
                     }
                     obj.innerHTML += "<br>";
                 }
@@ -141,9 +127,6 @@
             parrafo.innerHTML = "La matriz coloreada es:";
             mostrarMatriz(minasMarcadas, contenedor2);
         }
-
-        // Muestro la matriz inicial
-        mostrarMatriz(minas, document.getElementById("contenedor1"));
 
 
 
