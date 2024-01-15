@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge 1</title>
 </head>
+
 <body>
     <h2>Buscar el nombre más popular de un array</h2>
     <p id="array"></p>
@@ -24,9 +26,9 @@
             let popular = "";
             let ocurrenciasPopular = 0;
             for (let i = 0; i < array.length; i++) {
-                if (array[i] != popular){
+                if (array[i] != popular) {
                     let repeticiones = contarRepeticiones(array[i], array);
-                    if (repeticiones > ocurrenciasPopular){ // Si es más popular que el que llevo lo cambio
+                    if (repeticiones > ocurrenciasPopular) { // Si es más popular que el que llevo lo cambio
                         popular = array[i];
                         ocurrenciasPopular = repeticiones;
                     }
@@ -39,12 +41,12 @@
             let txt = document.getElementById("array");
             txt.innerHTML = "[ "
             for (let i = 0; i < array.length; i++) {
-                if (i == array.length - 1){
+                if (i == array.length - 1) {
                     txt.innerHTML += array[i] + "] ";
                 } else {
                     txt.innerHTML += array[i] + ", ";
                 }
-                
+
             }
         }
 
@@ -54,4 +56,5 @@
 
     </script>
 </body>
+
 </html>

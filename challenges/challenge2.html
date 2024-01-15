@@ -12,8 +12,8 @@
     <p id="array"></p>
     <p id="parrafo"></p>
     <script>
-        let nombres = ["cristina", "jorge", "dario", "cristina", "alvaro", "jorge", "jorge", "dario", 
-        "pepito", "grillo", "dario", "cristina", "grillo", "grillo", "grillo"];
+        let nombres = ["cristina", "jorge", "dario", "cristina", "alvaro", "jorge", "jorge", "dario",
+            "pepito", "grillo", "dario", "cristina", "grillo", "grillo", "grillo"];
 
         const contarRepeticiones = (nombre, array) => {
             let contador = 0;
@@ -29,12 +29,12 @@
             for (let j = 0; j < populares.length; j++) {
                 if (aux === undefined) {
                     // Si es mayor lo cambio y me quedo con el cambiado para seguir viendo en los que queden
-                    if (populares[j][1] <= repeticiones){ 
-                        aux = populares [j];
+                    if (populares[j][1] <= repeticiones) {
+                        aux = populares[j];
                         populares[j] = [nombre, repeticiones];
                     }
                 } else { // En caso de ya haber cambiado compruebo con el que he quitado si es el mejor de los que quedan
-                    if (populares[j][1] <= aux[1]){
+                    if (populares[j][1] <= aux[1]) {
                         let aux2 = populares[j][1]; // En caso de cambiar otra vez necesito otro aux solo para esta
                         populares[j] = aux;
                         aux = aux2;
